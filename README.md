@@ -1,5 +1,11 @@
 # Not It!
 
+<p align="center">
+  <a href="https://not-it-chore-game.netlify.app">
+    <img src="docs/cover.png" alt="Not It! bidding screen: round 1 of 6, Clean windows, with four players, a diya countdown timer, the bid picker and a Kabir: NOT IT! pop-up" width="300">
+  </a>
+</p>
+
 Phone-first multiplayer chore bidding game with a Diwali-night look. Netlify serves the files in `public/`; `netlify/functions/game.ts` and Netlify Blobs handle rooms, private bids, timers, scoring, reconnects, and host handover. The client polls the function and stores its room credentials locally.
 
 ## Deploy on Netlify
