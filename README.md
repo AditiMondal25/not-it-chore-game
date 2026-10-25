@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://not-it-chore-game.netlify.app">
-    <img src="docs/cover.png" alt="Not It! bidding screen: round 1 of 6, Clean windows, with four players, a diya countdown timer, the bid picker and a Kabir: NOT IT! pop-up" width="300">
+    <img src="docs/cover.jpg" alt="Not It! cover: the game's title and how-to-play steps beside three phones showing the bidding, reveal and winner screens" width="100%">
   </a>
 </p>
 
