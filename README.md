@@ -4,6 +4,10 @@ Phone-first multiplayer chore bidding game with a Diwali-night look. Netlify ser
 
 ## Deploy on Netlify
 
+Live at https://not-it-chore-game.netlify.app. The Netlify site is connected to this GitHub repo, so every push to `main` builds and deploys automatically.
+
+### Manual deploy (Netlify Drop)
+
 1. Unzip `netlify-ready-game.zip`.
 2. Sign in to Netlify, open [Netlify Drop](https://app.netlify.com/drop), and drop the **unzipped project folder** (the folder containing `netlify.toml`, `package.json`, `public/`, and `netlify/`).
 3. Wait for the deploy to finish. Open the site’s Functions page and confirm it lists `game`.
