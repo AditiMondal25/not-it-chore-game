@@ -31,7 +31,7 @@ async function request(action, data = {}) {
       render();
     }
     if (!result.ok && action !== "poll") showToast(result.error || "Could not update the room");
-    if (!result.ok && action === "poll" && response.status === 404) { clearTimeout(pollTimer); state = null; roomCode = ""; playerId = ""; token = ""; home(); }
+    if (!result.ok && action === "poll" && response.status === 404) leaveRoom(roomCode, true);
     return result;
   } catch (error) {
     if (action !== "poll") showToast("Connection problem. Please try again.");
@@ -82,8 +82,14 @@ async function connect(code, name) {
   let saved = null;
   try { saved = JSON.parse(localStorage.getItem(`notit:${code}`) || "null"); } catch { localStorage.removeItem(`notit:${code}`); }
   playerId = saved?.playerId || ""; token = saved?.token || "";
-  localStorage.setItem("notit:lastRoom", JSON.stringify({ roomCode, nickname }));
-  await request("join", { roomCode, nickname, ...(playerId && token ? { playerId, token } : {}) });
+  const result = await request("join", { roomCode, nickname, ...(playerId && token ? { playerId, token } : {}) });
+  // A server error string means the room or session is gone; a thrown network error keeps the saved room for a retry.
+  if (!result.state) leaveRoom(code, typeof result.error === "string");
+}
+function leaveRoom(code, forget) {
+  clearTimeout(pollTimer); state = null; roomCode = ""; playerId = ""; token = "";
+  if (forget) { localStorage.removeItem(`notit:${code}`); localStorage.removeItem("notit:lastRoom"); }
+  if (!app.querySelector(".home")) home();
 }
 function resumeRoom() {
   try {
